@@ -1,0 +1,24 @@
+
+    select.select {
+     -webkit-appearance: none;
+     border-radius: 0px;
+    }
+    input, textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+    }
+    .listing-subtext {
+       white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+    .text-force-wrap {
+    	word-wrap: break-word;
+    }
+    input[type="checkbox"]:checked + label {
+        background-image: url("http://uploads.webflow.com/576c2bab56781b9d0fb1fa03/576c3e9a0210003c55993d6f_checked.svg");
+    }
+    input[type="radio"]:checked + label {
+        background-image: url("http://uploads.webflow.com/576c2bab56781b9d0fb1fa03/576c3e9a0210003c55993d6f_checked.svg");
+    }
+  

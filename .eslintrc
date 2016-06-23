@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "import/no-unresolved": [
+      2, { "ignore": ["^meteor/"] }
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  }
+}

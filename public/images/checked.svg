@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="15" cy="15" r="15"></circle>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="30" height="30" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <g id="verify-sign" transform="translate(8.000000, 9.000000)" fill="#00CE6A">
+                <g id="Capa_1">
+                    <g id="tick">
+                        <path d="M13.602633,0.446450207 C13.1026525,-0.143970954 12.292571,-0.143970954 11.7926134,0.446450207 L4.18013051,9.4363278 L2.15597716,7.38294813 C1.66284829,6.80056432 0.863409462,6.80056432 0.369846656,7.38294813 C-0.123282219,7.96530498 -0.123282219,8.90988174 0.369846656,9.49223859 L3.39393801,12.5597261 C3.88706688,13.14211 4.68650571,13.14211 5.18006852,12.5597261 C5.22955954,12.5013071 5.2709429,12.4363071 5.31061338,12.371334 C5.31785318,12.3632697 5.32596085,12.3577137 5.33322349,12.3496494 L13.6026558,2.58343983 C14.1021566,1.99353112 14.1021566,1.03635892 13.602633,0.446450207 L13.602633,0.446450207 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+            <use id="Oval-1" stroke="#00CE6A" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
