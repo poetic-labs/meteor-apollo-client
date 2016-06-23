@@ -28,20 +28,12 @@ class AppWrapper extends React.Component {
   }
 
   componentWillMount() {
-    this.redirectToLoginWhenUnauthorized(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    this.redirectToLoginWhenUnauthorized(nextProps)
   }
 
   render() {
-    const {loggingIn, loggedIn} = this.props
-
-    if (loggingIn || !this.isAuthorized({loggingIn, loggedIn})) {
-      return <Index noRedirect={true} />;
-    }
-
     return <App />;
   }
 }
