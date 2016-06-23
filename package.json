@@ -10,14 +10,15 @@
     "watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests"
   },
   "dependencies": {
+    "apollo-client": "^0.3.19",
     "eslint-config-poetic": "^1.0.0",
     "lodash": "^4.13.1",
     "meteor-node-stubs": "~0.2.0",
     "param-store": "^1.0.0",
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.1.0",
+    "react-apollo": "^0.3.9",
     "react-dom": "^15.1.0",
-    "react-redux": "^4.4.5",
     "react-super-components": "^0.4.1",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"

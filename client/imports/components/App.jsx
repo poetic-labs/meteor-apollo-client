@@ -2,18 +2,18 @@
 import React from 'react';
 import Index from './Index';
 import { Stack } from 'react-super-components';
-import { Provider } from 'react-redux';
-import store from '../store';
+import { ApolloProvider } from 'react-apollo';
+import store, { apolloClient } from '../store';
 
 class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
+      <ApolloProvider store={store} client={apolloClient}>
         <Stack index="path">
           <Index index="" />
           <div />
         </Stack>
-      </Provider>
+      </ApolloProvider>
       );
   }
 }

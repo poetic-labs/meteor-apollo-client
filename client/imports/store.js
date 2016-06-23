@@ -1,6 +1,20 @@
 /* eslint-disable */
-import { createStore, applyMiddleware } from 'redux';
+import { Meteor } from 'meteor/meteor';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 
-export default createStore(reducers, applyMiddleware(thunk));
+const networkInterface = createNetworkInterface(Meteor.absoluteUrl());
+
+export const apolloClient = new ApolloClient({
+  networkInterface,
+});
+
+export default createStore(
+  combineReducers({
+    routes: reducers,
+    apollo: apolloClient.reducer(),
+  }),
+  applyMiddleware(thunk, apolloClient.middleware())
+);

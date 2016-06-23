@@ -2,8 +2,12 @@
 import React from 'react';
 import { connect as reduxConnect } from 'react-redux';
 import action from '../action-creators/index';
+import store from '../store';
 
 class Index extends React.Component {
+  componentWillMount() {
+    console.log(store.getState())
+  }
   render() {
     return (
       <div className="body">
@@ -20,7 +24,7 @@ class Index extends React.Component {
                 placeholder="What needs to be done?"
                 type="text"
                 className="w-input todo-input"
-                value={this.props['state.index.field']}
+                value={this.props['state.routes.index.field']}
                 onChange={this.props['action.index.changeField']} />
             </form>
             <div className="w-form-done">
@@ -46,7 +50,7 @@ class Index extends React.Component {
                   name="checkbox"
                   type="checkbox"
                   className="w-checkbox-input display-none"
-                  checked={this.props['state.index.checkbox']}
+                  checked={this.props['state.routes.index.checkbox']}
                   onChange={this.props['action.index.toggleCheckbox']} />
                 <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox">
                   dummy text of the printing and typesetting industry.
@@ -77,7 +81,7 @@ class Index extends React.Component {
                   name="checkbox-3"
                   type="checkbox"
                   className="w-checkbox-input display-none"
-                  checked={this.props['state.index.checkbox3']}
+                  checked={this.props['state.routes.index.checkbox3']}
                   onChange={this.props['action.index.toggleCheckbox3']} />
                 <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox-3">
                   dummy text of the printing and
@@ -108,7 +112,7 @@ class Index extends React.Component {
                   name="checkbox-2"
                   type="checkbox"
                   className="w-checkbox-input display-none"
-                  checked={this.props['state.index.checkbox2']}
+                  checked={this.props['state.routes.index.checkbox2']}
                   onChange={this.props['action.index.toggleCheckbox2']} />
                 <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox-2">
                   dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -135,10 +139,10 @@ class Index extends React.Component {
 ;
 const IndexWithRedux = reduxConnect(
   (state) => ({
-    'state.index.field': state.index.field,
-    'state.index.checkbox': state.index.checkbox,
-    'state.index.checkbox3': state.index.checkbox3,
-    'state.index.checkbox2': state.index.checkbox2
+    'state.routes.index.field': state.routes.index.field,
+    'state.routes.index.checkbox': state.routes.index.checkbox,
+    'state.routes.index.checkbox3': state.routes.index.checkbox3,
+    'state.routes.index.checkbox2': state.routes.index.checkbox2
   }),
   {
     'action.index.submitEmailForm': action.index.submitEmailForm,

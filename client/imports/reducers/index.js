@@ -8,7 +8,7 @@ export default (state = {}, action) => {
       return action.value;
     default:
       return combineReducers({
-index
+        index
       })(state, action);
   }
 }
