@@ -121,7 +121,35 @@ const mapMutationsToProps = ({ ownProps, state }) => {
         `,
         variables: { id },
       };
-    }
+    },
+    createTodo(title) {
+      return {
+        mutation: gql`
+          mutation createTodo(
+            $title: String!
+          ) {
+            createTodo(title: $title, completed: false) {
+              id
+            }
+          }
+        `,
+        variables: { title },
+      };
+    },
+    removeTodo(id) {
+      return {
+        mutation: gql`
+          mutation removeTodo(
+            $id: Int!
+          ) {
+            removeTodo(id: $id) {
+              id
+            }
+          }
+        `,
+        variables: { id },
+      };
+    },
   };
 };
 
