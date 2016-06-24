@@ -44,6 +44,7 @@ class Index extends React.Component {
           </div>
 
           {this.props.todos.todos ? this.props.todos.todos.map(todo => {
+            const htmlId = `checkbox-${todo.id}`;
             return (
               <div key={todo.id} className="w-form form-wrapper">
                 <form data-name="Email Form 2"
@@ -53,8 +54,8 @@ class Index extends React.Component {
                   onSubmit={this.props['action.index.submitEmailForm2']}>
                   <div className="w-checkbox w-clearfix checkbox-field">
                     <input data-name="Checkbox"
-                      id="checkbox"
-                      name="checkbox"
+                      id={htmlId}
+                      name={htmlId}
                       type="checkbox"
                       className="w-checkbox-input display-none"
                       checked={todo.completed}
@@ -62,7 +63,7 @@ class Index extends React.Component {
                         console.log('called')
                         this.props.mutations.toggleTodoCompleted(todo.id);
                       }} />
-                    <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox">
+                    <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor={htmlId}>
                       {todo.title}
                     </label>
                     <a href="#" className="w-inline-block trash"><img src="images/trash.svg" /></a>
@@ -100,6 +101,7 @@ const mapQueriesToProps = ({ ownProps, state }) => {
           }
         }
       `,
+      pollInterval: 500,
     },
   };
 };
