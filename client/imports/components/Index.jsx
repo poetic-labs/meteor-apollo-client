@@ -17,7 +17,11 @@ class Index extends React.Component {
             <form data-name="Email Form"
               id="email-form"
               name="email-form"
-              onSubmit={this.props['action.index.submitEmailForm']}>
+              onSubmit={e => {
+                e.preventDefault();
+                const input = e.target.children[0].value;
+                this.props.mutations.createTodo(input);
+              }}>
               <input autofocus="autofocus"
                 id="field"
                 maxlength="256"
@@ -26,10 +30,7 @@ class Index extends React.Component {
                 type="text"
                 className="w-input todo-input"
                 value={this.props['state.routes.index.field']}
-                onChange={e => {
-                  console.log(this.props.todos.todos)
-                  //this.props['action.index.changeField']
-                }} />
+                onChange={e => {}} />
             </form>
             <div className="w-form-done">
               <div>
