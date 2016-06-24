@@ -66,7 +66,14 @@ class Index extends React.Component {
                     <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor={htmlId}>
                       {todo.title}
                     </label>
-                    <a href="#" className="w-inline-block trash"><img src="images/trash.svg" /></a>
+                    <a
+                      onClick={() => {
+                        this.props.mutations.deleteTodo(todo.id);
+                      }}
+                      className="w-inline-block trash"
+                    >
+                      <img src="images/trash.svg" />
+                    </a>
                   </div>
                 </form>
                 <div className="w-form-done">
@@ -136,13 +143,13 @@ const mapMutationsToProps = ({ ownProps, state }) => {
         variables: { title },
       };
     },
-    removeTodo(id) {
+    deleteTodo(id) {
       return {
         mutation: gql`
-          mutation removeTodo(
+          mutation deleteTodo(
             $id: Int!
           ) {
-            removeTodo(id: $id) {
+            deleteTodo(id: $id) {
               id
             }
           }
