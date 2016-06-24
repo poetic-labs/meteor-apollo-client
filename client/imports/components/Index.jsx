@@ -7,7 +7,7 @@ import gql from 'apollo-client/gql';
 
 class Index extends React.Component {
   componentWillMount() {
-    console.log('mounted', this.props.todos)
+    console.log('mounted', this.props)
   }
   render() {
     return (
@@ -28,7 +28,7 @@ class Index extends React.Component {
                 value={this.props['state.routes.index.field']}
                 onChange={e => {
                   console.log(this.props.todos.todos)
-                  this.props['action.index.changeField']
+                  //this.props['action.index.changeField']
                 }} />
             </form>
             <div className="w-form-done">
@@ -58,7 +58,10 @@ class Index extends React.Component {
                       type="checkbox"
                       className="w-checkbox-input display-none"
                       checked={todo.completed}
-                      onChange={this.props['action.index.toggleCheckbox']} />
+                      onChange={e => {
+                        console.log('called')
+                        this.props.mutations.toggleTodoCompleted(todo.id);
+                      }} />
                     <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox">
                       {todo.title}
                     </label>
@@ -80,7 +83,7 @@ class Index extends React.Component {
           }) : ''}
         </div>
       </div>
-      );
+    );
   }
 }
 ;
@@ -97,13 +100,32 @@ const mapQueriesToProps = ({ ownProps, state }) => {
           }
         }
       `,
-      forceFetch: true,
     },
+  };
+};
+
+const mapMutationsToProps = ({ ownProps, state }) => {
+  return {
+    toggleTodoCompleted(id) {
+      return {
+        mutation: gql`
+          mutation toggleTodoCompleted(
+            $id: Int!
+          ) {
+            toggleTodoCompleted(id: $id) {
+              id
+            }
+          }
+        `,
+        variables: { id },
+      };
+    }
   };
 };
 
 const IndexWithRedux = apolloConnect({
   mapQueriesToProps,
+  mapMutationsToProps,
 })(Index);
 //const IndexWithRedux = apolloConnect(
   //(state) => ({
