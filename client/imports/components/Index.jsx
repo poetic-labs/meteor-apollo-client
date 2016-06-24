@@ -6,9 +6,6 @@ import store from '../store';
 import gql from 'apollo-client/gql';
 
 class Index extends React.Component {
-  componentWillMount() {
-    console.log('mounted', this.props)
-  }
   render() {
     return (
       <div className="body">
@@ -165,23 +162,5 @@ const IndexWithRedux = apolloConnect({
   mapQueriesToProps,
   mapMutationsToProps,
 })(Index);
-//const IndexWithRedux = apolloConnect(
-  //(state) => ({
-    //'state.routes.index.field': state.routes.index.field,
-    //'state.routes.index.checkbox': state.routes.index.checkbox,
-    //'state.routes.index.checkbox3': state.routes.index.checkbox3,
-    //'state.routes.index.checkbox2': state.routes.index.checkbox2
-  //}),
-  //{
-    //'action.index.submitEmailForm': action.index.submitEmailForm,
-    //'action.index.changeField': action.index.changeField,
-    //'action.index.submitEmailForm2': action.index.submitEmailForm2,
-    //'action.index.toggleCheckbox': action.index.toggleCheckbox,
-    //'action.index.submitEmailForm2': action.index.submitEmailForm2,
-    //'action.index.toggleCheckbox3': action.index.toggleCheckbox3,
-    //'action.index.submitEmailForm2': action.index.submitEmailForm2,
-    //'action.index.toggleCheckbox2': action.index.toggleCheckbox2
-  //}
-//)(Index);
 
 export default IndexWithRedux;
