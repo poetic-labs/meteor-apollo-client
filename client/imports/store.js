@@ -5,7 +5,7 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 
-const networkInterface = createNetworkInterface(Meteor.absoluteUrl());
+const networkInterface = createNetworkInterface('http://localhost:4000/graphql');
 
 export const apolloClient = new ApolloClient({
   networkInterface,

@@ -1,12 +1,13 @@
 /* eslint-disable */
 import React from 'react';
-import { connect as reduxConnect } from 'react-redux';
+import { connect as apolloConnect } from 'react-apollo';
 import action from '../action-creators/index';
 import store from '../store';
+import gql from 'apollo-client/gql';
 
 class Index extends React.Component {
   componentWillMount() {
-    console.log(store.getState())
+    console.log('mounted', this.props.todos)
   }
   render() {
     return (
@@ -25,7 +26,10 @@ class Index extends React.Component {
                 type="text"
                 className="w-input todo-input"
                 value={this.props['state.routes.index.field']}
-                onChange={this.props['action.index.changeField']} />
+                onChange={e => {
+                  console.log(this.props.todos.todos)
+                  this.props['action.index.changeField']
+                }} />
             </form>
             <div className="w-form-done">
               <div>
@@ -38,122 +42,86 @@ class Index extends React.Component {
               </div>
             </div>
           </div>
-          <div className="w-form form-wrapper">
-            <form data-name="Email Form 2"
-              id="email-form-2"
-              name="email-form-2"
-              className="form"
-              onSubmit={this.props['action.index.submitEmailForm2']}>
-              <div className="w-checkbox w-clearfix checkbox-field">
-                <input data-name="Checkbox"
-                  id="checkbox"
-                  name="checkbox"
-                  type="checkbox"
-                  className="w-checkbox-input display-none"
-                  checked={this.props['state.routes.index.checkbox']}
-                  onChange={this.props['action.index.toggleCheckbox']} />
-                <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox">
-                  dummy text of the printing and typesetting industry.
-                </label>
-                <a href="#" className="w-inline-block trash"><img src="images/trash.svg" /></a>
+
+          {this.props.todos.todos ? this.props.todos.todos.map(todo => {
+            return (
+              <div key={todo.id} className="w-form form-wrapper">
+                <form data-name="Email Form 2"
+                  id="email-form-2"
+                  name="email-form-2"
+                  className="form"
+                  onSubmit={this.props['action.index.submitEmailForm2']}>
+                  <div className="w-checkbox w-clearfix checkbox-field">
+                    <input data-name="Checkbox"
+                      id="checkbox"
+                      name="checkbox"
+                      type="checkbox"
+                      className="w-checkbox-input display-none"
+                      checked={todo.completed}
+                      onChange={this.props['action.index.toggleCheckbox']} />
+                    <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox">
+                      {todo.title}
+                    </label>
+                    <a href="#" className="w-inline-block trash"><img src="images/trash.svg" /></a>
+                  </div>
+                </form>
+                <div className="w-form-done">
+                  <div>
+                    Thank you! Your submission has been received!
+                  </div>
+                </div>
+                <div className="w-form-fail">
+                  <div>
+                    Oops! Something went wrong while submitting the form
+                  </div>
+                </div>
               </div>
-            </form>
-            <div className="w-form-done">
-              <div>
-                Thank you! Your submission has been received!
-              </div>
-            </div>
-            <div className="w-form-fail">
-              <div>
-                Oops! Something went wrong while submitting the form
-              </div>
-            </div>
-          </div>
-          <div className="w-form form-wrapper">
-            <form data-name="Email Form 2"
-              id="email-form-2"
-              name="email-form-2"
-              className="form"
-              onSubmit={this.props['action.index.submitEmailForm2']}>
-              <div className="w-checkbox w-clearfix checkbox-field">
-                <input data-name="Checkbox 3"
-                  id="checkbox-3"
-                  name="checkbox-3"
-                  type="checkbox"
-                  className="w-checkbox-input display-none"
-                  checked={this.props['state.routes.index.checkbox3']}
-                  onChange={this.props['action.index.toggleCheckbox3']} />
-                <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox-3">
-                  dummy text of the printing and
-                </label>
-                <a href="#" className="w-inline-block trash"><img src="images/trash.svg" /></a>
-              </div>
-            </form>
-            <div className="w-form-done">
-              <div>
-                Thank you! Your submission has been received!
-              </div>
-            </div>
-            <div className="w-form-fail">
-              <div>
-                Oops! Something went wrong while submitting the form
-              </div>
-            </div>
-          </div>
-          <div className="w-form form-wrapper">
-            <form data-name="Email Form 2"
-              id="email-form-2"
-              name="email-form-2"
-              className="form"
-              onSubmit={this.props['action.index.submitEmailForm2']}>
-              <div className="w-checkbox w-clearfix checkbox-field">
-                <input data-name="Checkbox 2"
-                  id="checkbox-2"
-                  name="checkbox-2"
-                  type="checkbox"
-                  className="w-checkbox-input display-none"
-                  checked={this.props['state.routes.index.checkbox2']}
-                  onChange={this.props['action.index.toggleCheckbox2']} />
-                <label data-ix="new-interaction" className="w-form-label checkbox-label" htmlFor="checkbox-2">
-                  dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                </label>
-                <a href="#" className="w-inline-block trash"><img src="images/trash.svg" /></a>
-              </div>
-            </form>
-            <div className="w-form-done">
-              <div>
-                Thank you! Your submission has been received!
-              </div>
-            </div>
-            <div className="w-form-fail">
-              <div>
-                Oops! Something went wrong while submitting the form
-              </div>
-            </div>
-          </div>
+            )
+          }) : ''}
         </div>
       </div>
       );
   }
 }
 ;
-const IndexWithRedux = reduxConnect(
-  (state) => ({
-    'state.routes.index.field': state.routes.index.field,
-    'state.routes.index.checkbox': state.routes.index.checkbox,
-    'state.routes.index.checkbox3': state.routes.index.checkbox3,
-    'state.routes.index.checkbox2': state.routes.index.checkbox2
-  }),
-  {
-    'action.index.submitEmailForm': action.index.submitEmailForm,
-    'action.index.changeField': action.index.changeField,
-    'action.index.submitEmailForm2': action.index.submitEmailForm2,
-    'action.index.toggleCheckbox': action.index.toggleCheckbox,
-    'action.index.submitEmailForm2': action.index.submitEmailForm2,
-    'action.index.toggleCheckbox3': action.index.toggleCheckbox3,
-    'action.index.submitEmailForm2': action.index.submitEmailForm2,
-    'action.index.toggleCheckbox2': action.index.toggleCheckbox2
-  }
-)(Index);
+
+const mapQueriesToProps = ({ ownProps, state }) => {
+  return {
+    todos: {
+      query: gql`
+        {
+          todos {
+            id,
+            title,
+            completed
+          }
+        }
+      `,
+      forceFetch: true,
+    },
+  };
+};
+
+const IndexWithRedux = apolloConnect({
+  mapQueriesToProps,
+})(Index);
+//const IndexWithRedux = apolloConnect(
+  //(state) => ({
+    //'state.routes.index.field': state.routes.index.field,
+    //'state.routes.index.checkbox': state.routes.index.checkbox,
+    //'state.routes.index.checkbox3': state.routes.index.checkbox3,
+    //'state.routes.index.checkbox2': state.routes.index.checkbox2
+  //}),
+  //{
+    //'action.index.submitEmailForm': action.index.submitEmailForm,
+    //'action.index.changeField': action.index.changeField,
+    //'action.index.submitEmailForm2': action.index.submitEmailForm2,
+    //'action.index.toggleCheckbox': action.index.toggleCheckbox,
+    //'action.index.submitEmailForm2': action.index.submitEmailForm2,
+    //'action.index.toggleCheckbox3': action.index.toggleCheckbox3,
+    //'action.index.submitEmailForm2': action.index.submitEmailForm2,
+    //'action.index.toggleCheckbox2': action.index.toggleCheckbox2
+  //}
+//)(Index);
 
 export default IndexWithRedux;
